@@ -29,6 +29,26 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-hic',
         VERSION_CHECK=lambda v: True,
     ),
+    cycoin=math.Object(
+        PARENT=networks.nets['cycocoin'],
+        SHARE_PERIOD=15, # seconds
+        NEW_SHARE_PERIOD=15, # seconds
+        CHAIN_LENGTH=12*60*60//15, # shares
+        REAL_CHAIN_LENGTH=12*60*60//15, # shares
+        TARGET_LOOKBEHIND=10, # shares  //with that the pools share diff is adjusting faster, important if huge hashing power comes to the pool
+        SPREAD=30, # blocks
+        NEW_SPREAD=30, # blocks
+        IDENTIFIER='f0e9a96e6b7e01a8'.decode('hex'),
+        PREFIX='e0f84ac965e01af8'.decode('hex'),
+        P2P_PORT=7441,
+        MIN_TARGET=4,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=False,
+        WORKER_PORT=9441,
+        BOOTSTRAP_ADDRS='rav3n.dtdns.net p2pool-eu.gotgeeks.com p2pool-us.gotgeeks.com'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: True,
+    ),
 
 
 )
