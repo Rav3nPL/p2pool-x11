@@ -30,7 +30,7 @@ nets = dict(
         VERSION_CHECK=lambda v: True,
     ),
     cycoin=math.Object(
-        PARENT=networks.nets['cycocoin'],
+        PARENT=networks.nets['cycoin'],
         SHARE_PERIOD=15, # seconds
         NEW_SHARE_PERIOD=15, # seconds
         CHAIN_LENGTH=12*60*60//15, # shares
