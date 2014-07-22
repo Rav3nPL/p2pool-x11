@@ -44,9 +44,9 @@ nets = dict(
 
     cycoin=math.Object(
         P2P_PREFIX='fbc0b6db'.decode('hex'),
-        P2P_PORT=33833,
+        P2P_PORT=33834,
         ADDRESS_VERSION=28,
-        RPC_PORT=19333,
+        RPC_PORT=33833,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
             'conspiracycoinaddress' in (yield bitcoind.rpc_help()) and
             not (yield bitcoind.rpc_getinfo())['testnet']
