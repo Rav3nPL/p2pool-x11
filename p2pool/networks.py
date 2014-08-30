@@ -49,6 +49,26 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
+    pyramidscoin=math.Object(
+        PARENT=networks.nets['pyramidscoin'],
+        SHARE_PERIOD=10, # seconds
+        NEW_SHARE_PERIOD=10, # seconds
+        CHAIN_LENGTH=12*60*60//10, # shares
+        REAL_CHAIN_LENGTH=12*60*60//10, # shares
+        TARGET_LOOKBEHIND=10, # shares  //with that the pools share diff is adjusting faster, important if huge hashing power comes to the pool
+        SPREAD=30, # blocks
+        NEW_SPREAD=30, # blocks
+        IDENTIFIER='f1a3b3c9d9e9c0e7'.decode('hex'),
+        PREFIX='f2ee0af0b67ea91e'.decode('hex'),
+        P2P_PORT=7994,
+        MIN_TARGET=4,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=False,
+        WORKER_PORT=9993,
+        BOOTSTRAP_ADDRS='p2pool.pyramidscoin.com rav3n.dtdns.net p2pool-eu.gotgeeks.com p2pool-us.gotgeeks.com'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: True,
+    ),
 
 
 )

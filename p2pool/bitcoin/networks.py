@@ -64,6 +64,28 @@ nets = dict(
         DUMB_SCRYPT_DIFF=1,
         DUST_THRESHOLD=0.001e8,
     ),
+    pyramidscoin=math.Object(
+        P2P_PREFIX='f6c6b6d6'.decode('hex'), #pchmessagestart
+        P2P_PORT=33994,
+        ADDRESS_VERSION=56,#pubkey_address
+        RPC_PORT=33993,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'pyramidscoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 90*100000000, #till block 766`666, then need update :P
+        BLOCKHASH_FUNC=lambda data: pack.IntType(256).unpack(__import__('xcoin_hash').getPoWHash(data)),
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('xcoin_hash').getPoWHash(data)),
+        BLOCK_PERIOD=30, # s
+        SYMBOL='PYRA',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Pyramidscoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/pyramidscoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.pyramidscoin'), 'pyramidscoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://explorer.pyramidscoin.com/block/', #dummy
+        ADDRESS_EXPLORER_URL_PREFIX='http://explorer.pyramidscoin.org/address/',
+        TX_EXPLORER_URL_PREFIX='http://explorer.pyramidscoin.org/tx/',
+        SANE_TARGET_RANGE=(2**256//2**32//1000 - 1, 2**256//2**20 - 1), 
+        DUMB_SCRYPT_DIFF=1,
+        DUST_THRESHOLD=0.001e8,
+    ),
 
 
 )
